@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أحمد فتحي | مطور تطبيقات وأنظمة</title>
+<meta name="description" content="أحمد فتحي، مطور تطبيقات سطح المكتب والجوال والويب من اليمن. أنظمة نقاط بيع وأرشفة وإدارة مراكز تعليمية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --ink: #17181a;
+  --muted: #5d6168;
+  --line: #e7e4df;
+  --accent: #0e7c66;
+  --accent-ink: #ffffff;
+  --accent-soft: #e7f3ef;
+  --radius: 14px;
+  --wrap: 1100px;
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.75 "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* language switch: content is written twice, CSS shows one */
+html[lang="ar"] .en, html[lang="en"] .ar { display: none !important; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
+section { padding: 88px 0; }
+.eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: .02em; }
+h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.3; margin: 6px 0 14px; }
+.lead { color: var(--muted); max-width: 640px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 999px;
+  font-weight: 500; text-decoration: none; border: 1px solid var(--line);
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible, .lang:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { background: #0b6a57; }
+
+/* header */
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(251, 250, 248, .9); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav { display: flex; align-items: center; gap: 28px; height: 64px; }
+.brand { font-weight: 700; text-decoration: none; margin-inline-end: auto; }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; }
+.nav-links a:hover { color: var(--ink); }
+.lang {
+  font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+}
+
+/* hero */
+.hero { padding: 96px 0 72px; }
+.hero h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.2; max-width: 780px; margin: 10px 0 20px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { font-size: 19px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.platforms { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 44px; color: var(--muted); font-size: 15px; }
+.platforms span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; background: var(--surface); }
+
+/* projects */
+#work { background: var(--surface); border-block: 1px solid var(--line); }
+.projects { display: grid; gap: 72px; margin-top: 48px; }
+.project { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+.project:nth-child(even) .shot { order: 2; }
+.shot {
+  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
+  background: var(--bg); box-shadow: 0 18px 40px -24px rgba(23, 24, 26, .35);
+}
+.shot img { width: 100%; height: auto; }
+.shot.logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: #fff; }
+.shot.logo img { width: 46%; }
+.tag { display: inline-block; font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
+.project h3 { font-size: 26px; margin: 12px 0 8px; }
+.project p { color: var(--muted); }
+.features { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 8px; }
+.features li { padding-inline-start: 22px; position: relative; }
+.features li::before { content: ""; position: absolute; inset-inline-start: 0; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; direction: ltr; }
+
+/* services */
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+.card .icon { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 14px; }
+.card h3 { font-size: 18px; margin-bottom: 6px; }
+.card p { color: var(--muted); font-size: 15px; }
+
+/* about */
+.about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+.about p + p { margin-top: 14px; }
+.skills { display: grid; gap: 14px; }
+.skills h4 { font-size: 14px; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+
+/* contact */
+#contact { background: var(--ink); color: #f3f2ef; text-align: center; }
+#contact .lead { color: #b9bcc2; margin: 0 auto; }
+#contact .eyebrow { color: #5fd3b6; }
+#contact .hero-actions { justify-content: center; }
+#contact .btn:not(.btn-primary) { border-color: #3a3c40; }
+
+footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: center; padding: 0 0 32px; }
+
+@media (max-width: 860px) {
+  section { padding: 64px 0; }
+  .nav-links { display: none; }
+  .project, .about { grid-template-columns: 1fr; gap: 24px; }
+  .project:nth-child(even) .shot { order: 0; }
+  .services { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px) {
+  .services { grid-template-columns: 1fr; }
+  .hero { padding: 64px 0 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></a>
+    <nav class="nav-links">
+      <a href="#work"><span class="ar">أعمالي</span><span class="en">Work</span></a>
+      <a href="#services"><span class="ar">الخدمات</span><span class="en">Services</span></a>
+      <a href="#about"><span class="ar">عنّي</span><span class="en">About</span></a>
+      <a href="#contact"><span class="ar">تواصل</span><span class="en">Contact</span></a>
+    </nav>
+    <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ar">مطوّر تطبيقات وأنظمة · اليمن</span><span class="en">Software developer · Yemen</span></div>
+      <h1>
+        <span class="ar">أبني أنظمة <em>تعمل فعلاً</em>، حتى حين ينقطع الإنترنت.</span>
+        <span class="en">I build software that <em>keeps working</em>, even when the internet doesn't.</span>
+      </h1>
+      <p class="lead">
+        <span class="ar">أطوّر برامج سطح المكتب وتطبيقات الجوال وأنظمة الويب للمحلات والمؤسسات والمراكز التعليمية، من الفكرة حتى التثبيت والتحديث التلقائي عند العميل.</span>
+        <span class="en">Desktop, mobile and web systems for shops, offices and education centers, from the first idea to installation and automatic updates on the client's machines.</span>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work"><span class="ar">شاهد أعمالي</span><span class="en">See my work</span></a>
+        <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
+      </div>
+      <div class="platforms">
+        <span>Windows</span><span>Android</span><span>iOS</span><span>Web</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ar">أعمال مختارة</span><span class="en">Selected work</span></div>
+      <h2><span class="ar">مشاريع تعمل عند عملاء حقيقيين</span><span class="en">Systems in real daily use</span></h2>
+
+      <div class="projects">
+        <article class="project">
+          <div class="shot"><img src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="شاشة إدارة المنتجات في نظام الكافيه"></div>
+          <div>
+            <span class="tag"><span class="ar">نقطة بيع · سطح المكتب + أندرويد</span><span class="en">Point of sale · Desktop + Android</span></span>
+            <h3><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></h3>
+            <p>
+              <span class="ar">نظام نقاط بيع متكامل للمقاهي والمطاعم. البيع يعمل محلياً دائماً، والبيانات تُرفع للسحابة تلقائياً عند عودة الاتصال.</span>
+              <span class="en">A complete point-of-sale system for cafés and restaurants. Sales always run locally, and data syncs to the cloud automatically once the connection is back.</span>
+            </p>
+            <ul class="features">
+              <li><span class="ar">فواتير، مرتجعات، مشتريات، مصروفات، وورديات الكاشير</span><span class="en">Invoices, returns, purchases, expenses and cashier shifts</span></li>
+              <li><span class="ar">تطبيق تابلت للكاشير يرتبط بالجهاز الرئيسي عبر رمز QR</span><span class="en">Tablet cashier app that pairs with the main PC via QR code</span></li>
+              <li><span class="ar">تطبيق جوال لصاحب المحل يعرض التقارير من أي مكان</span><span class="en">Owner's mobile app with live reports from anywhere</span></li>
+              <li><span class="ar">مثبّت احترافي وتحديث تلقائي</span><span class="en">Signed installer and automatic updates</span></li>
+            </ul>
+            <div class="stack"><span>C# / .NET 8</span><span>WPF</span><span>SQLite</span><span>Supabase</span><span>Android</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="shot logo"><img src="images/quran.jpg" width="420" height="420" loading="lazy" alt="شعار تطبيق مراكز تحفيظ القرآن"></div>
+          <div>
+            <span class="tag"><span class="ar">منصة تعليمية · ويب + جوال</span><span class="en">Education platform · Web + Mobile</span></span>
+            <h3><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></h3>
+            <p>
+              <span class="ar">نظام متكامل لإدارة مراكز تحفيظ القرآن الكريم، يجمع المدير والمعلم وولي الأمر والطالب في منصة واحدة على الويب والجوال.</span>
+              <span class="en">An all-in-one platform for Quran memorization centers, connecting admins, teachers, parents and students on web and mobile.</span>
+            </p>
+            <ul class="features">
+              <li><span class="ar">إدارة المراكز والحلقات والطلاب</span><span class="en">Manage centers, circles and students</span></li>
+              <li><span class="ar">تقارير يومية للحفظ والمراجعة</span><span class="en">Daily memorization and revision reports</span></li>
+              <li><span class="ar">إشعارات فورية لأولياء الأمور</span><span class="en">Instant notifications for parents</span></li>
+              <li><span class="ar">تطبيق أندرويد وiOS من نفس الكود</span><span class="en">Android and iOS apps from one codebase</span></li>
+            </ul>
+            <div class="stack"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Capacitor</span><span>Firebase</span></div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="shot"><img src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="شاشة عرض الأرشيف في نظام Swift Doc"></div>
+          <div>
+            <span class="tag"><span class="ar">أرشفة إلكترونية · سطح المكتب</span><span class="en">Document archiving · Desktop</span></span>
+            <h3>Swift Doc</h3>
+            <p>
+              <span class="ar">نظام أرشفة إلكترونية للمؤسسات والسكرتارية، يحفظ المستندات مشفّرة ويربط المقر الرئيسي بالفروع.</span>
+              <span class="en">An electronic archiving system for offices, storing documents encrypted and linking headquarters with branches.</span>
+            </p>
+            <ul class="features">
+              <li><span class="ar">تخزين مشفّر وتصنيف هرمي متعدد المستويات</span><span class="en">Encrypted storage with multi-level categories</span></li>
+              <li><span class="ar">ربط المقر بالفروع عبر شبكة مباشرة بين الأجهزة</span><span class="en">Peer-to-peer link between HQ and branches</span></li>
+              <li><span class="ar">بحث سريع، سجل نشاطات، وسلة محذوفات</span><span class="en">Fast search, audit log and recycle bin</span></li>
+              <li><span class="ar">تفعيل بالترخيص وتحديث تلقائي، بالعربية والإنجليزية</span><span class="en">License activation, auto-updates, Arabic and English</span></li>
+            </ul>
+            <div class="stack"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLCipher</span><span>libp2p</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ar">ماذا أقدّم</span><span class="en">What I do</span></div>
+      <h2><span class="ar">الخدمات</span><span class="en">Services</span></h2>
+      <div class="services">
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3><span class="ar">برامج سطح المكتب</span><span class="en">Desktop software</span></h3>
+          <p><span class="ar">أنظمة نقاط بيع ومخازن وأرشفة لويندوز، مع مثبّت وتحديث تلقائي.</span><span class="en">POS, inventory and archiving systems for Windows, with installers and auto-updates.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+          <h3><span class="ar">تطبيقات الجوال</span><span class="en">Mobile apps</span></h3>
+          <p><span class="ar">تطبيقات أندرويد وiOS مرتبطة بنظامك وتعمل مع الإشعارات.</span><span class="en">Android and iOS apps connected to your system, with push notifications.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
+          <h3><span class="ar">أنظمة الويب</span><span class="en">Web systems</span></h3>
+          <p><span class="ar">لوحات تحكم ومنصات متعددة المستخدمين والصلاحيات.</span><span class="en">Dashboards and multi-user platforms with roles and permissions.</span></p>
+        </div>
+        <div class="card">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 6 16.3"/><path d="M12 12v9M9 18l3 3 3-3"/></svg></div>
+          <h3><span class="ar">العمل بدون إنترنت</span><span class="en">Offline-first sync</span></h3>
+          <p><span class="ar">أنظمة تعمل محلياً وتتزامن مع السحابة عند توفر الاتصال.</span><span class="en">Systems that run locally and sync to the cloud when a connection is available.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="padding-top: 0">
+    <div class="wrap about">
+      <div>
+        <div class="eyebrow"><span class="ar">عنّي</span><span class="en">About</span></div>
+        <h2><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></h2>
+        <p class="ar">مطوّر برمجيات من اليمن، أبني أنظمة لأصحاب الأعمال تحل مشاكل حقيقية في بيئة صعبة: انقطاع الكهرباء والإنترنت، وأجهزة متواضعة، ومستخدمون يريدون شيئاً بسيطاً يعمل.</p>
+        <p class="ar">أتولّى المشروع كاملاً: التصميم، والبرمجة، وقاعدة البيانات، وتطبيقات الجوال، والتثبيت والتحديثات بعد التسليم.</p>
+        <p class="en">A software developer from Yemen building systems for businesses in a demanding environment: power and internet outages, modest hardware, and users who want something simple that just works.</p>
+        <p class="en">I handle the whole project: design, code, database, mobile apps, installation and updates after delivery.</p>
+      </div>
+      <div class="skills">
+        <div><h4><span class="ar">سطح المكتب</span><span class="en">Desktop</span></h4><div class="stack"><span>C# / .NET</span><span>WPF</span><span>Electron</span></div></div>
+        <div><h4><span class="ar">الويب والجوال</span><span class="en">Web & mobile</span></h4><div class="stack"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Capacitor</span><span>Android</span></div></div>
+        <div><h4><span class="ar">البيانات والسحابة</span><span class="en">Data & cloud</span></h4><div class="stack"><span>Supabase</span><span>PostgreSQL</span><span>SQLite</span><span>Firebase</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="eyebrow"><span class="ar">لنعمل معاً</span><span class="en">Let's work together</span></div>
+      <h2><span class="ar">عندك فكرة نظام أو تطبيق؟</span><span class="en">Have a system or app in mind?</span></h2>
+      <p class="lead"><span class="ar">أرسل لي فكرتك وسأرد عليك بتصور أولي ومدة تقريبية.</span><span class="en">Send me your idea and I'll reply with an initial plan and a rough timeline.</span></p>
+      <div class="hero-actions">
+        <!-- TODO: ضع رقمك بالصيغة الدولية بدون + أو أصفار، مثل 967771234567 -->
+        <a class="btn btn-primary" href="https://wa.me/967000000000" target="_blank" rel="noopener"><span class="ar">راسلني على واتساب</span><span class="en">Message me on WhatsApp</span></a>
+        <!-- TODO: ضع بريدك -->
+        <a class="btn" href="mailto:you@example.com"><span class="ar">البريد الإلكتروني</span><span class="en">Email</span></a>
+        <!-- TODO: ضع رابط حسابك -->
+        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> <span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></div>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('lang');
+  const titles = { ar: 'أحمد فتحي | مطور تطبيقات وأنظمة', en: 'Ahmed Fathi | Software Developer' };
+  function setLang(lang) {
+    root.lang = lang;
+    root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = titles[lang];
+    btn.textContent = lang === 'ar' ? 'EN' : 'عربي';
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  let saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  if (saved === 'en') setLang('en');
+  btn.addEventListener('click', () => setLang(root.lang === 'ar' ? 'en' : 'ar'));
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
