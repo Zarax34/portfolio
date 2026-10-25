@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>أحمد فتحي | مطور تطبيقات وأنظمة</title>
 <meta name="description" content="أحمد فتحي، مطور تطبيقات سطح المكتب والجوال والويب من اليمن. أنظمة نقاط بيع وأرشفة وإدارة مراكز تعليمية.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0e7c66">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -36,7 +38,7 @@ a { color: inherit; }
 html[lang="ar"] .en, html[lang="en"] .ar { display: none !important; }
 
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
-section { padding: 88px 0; }
+section { padding: 88px 0; scroll-margin-top: 64px; }
 .eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: .02em; }
 h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.3; margin: 6px 0 14px; }
 .lead { color: var(--muted); max-width: 640px; }
@@ -59,7 +61,8 @@ header {
   border-bottom: 1px solid var(--line);
 }
 .nav { display: flex; align-items: center; gap: 28px; height: 64px; }
-.brand { font-weight: 700; text-decoration: none; margin-inline-end: auto; }
+.brand { font-weight: 700; text-decoration: none; margin-inline-end: auto; display: flex; align-items: center; gap: 10px; }
+.brand img { width: 30px; height: 30px; }
 .nav-links { display: flex; gap: 24px; }
 .nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; }
 .nav-links a:hover { color: var(--ink); }
@@ -97,6 +100,10 @@ header {
 .features li::before { content: ""; position: absolute; inset-inline-start: 0; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .stack { display: flex; flex-wrap: wrap; gap: 6px; }
 .stack span { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; direction: ltr; }
+.project .stack { align-items: center; }
+.project .stack::before { font-size: 13px; color: var(--muted); margin-inline-end: 4px; }
+html[lang="ar"] .project .stack::before { content: "اخترتُ لهذا المشروع:"; }
+html[lang="en"] .project .stack::before { content: "Chosen for this project:"; }
 
 /* services */
 .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
@@ -108,8 +115,12 @@ header {
 /* about */
 .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
 .about p + p { margin-top: 14px; }
-.skills { display: grid; gap: 14px; }
-.skills h4 { font-size: 14px; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+.approach { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+.approach h3 { font-size: 20px; margin-bottom: 6px; }
+.approach > p { color: var(--muted); font-size: 15px; }
+.approach dl { display: grid; gap: 14px; margin-top: 18px; }
+.approach dt { font-weight: 500; }
+.approach dd { margin: 0; color: var(--accent); font-size: 15px; }
 
 /* contact */
 #contact { background: var(--ink); color: #f3f2ef; text-align: center; }
@@ -141,7 +152,7 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></a>
+    <a class="brand" href="#top"><img src="favicon.svg" alt=""><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></a>
     <nav class="nav-links">
       <a href="#work"><span class="ar">أعمالي</span><span class="en">Work</span></a>
       <a href="#services"><span class="ar">الخدمات</span><span class="en">Services</span></a>
@@ -169,7 +180,7 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
         <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
       </div>
       <div class="platforms">
-        <span>Windows</span><span>Android</span><span>iOS</span><span>Web</span>
+        <span>Windows</span><span>Android</span><span>Web</span>
       </div>
     </div>
   </section>
@@ -212,7 +223,7 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
               <li><span class="ar">إدارة المراكز والحلقات والطلاب</span><span class="en">Manage centers, circles and students</span></li>
               <li><span class="ar">تقارير يومية للحفظ والمراجعة</span><span class="en">Daily memorization and revision reports</span></li>
               <li><span class="ar">إشعارات فورية لأولياء الأمور</span><span class="en">Instant notifications for parents</span></li>
-              <li><span class="ar">تطبيق أندرويد وiOS من نفس الكود</span><span class="en">Android and iOS apps from one codebase</span></li>
+              <li><span class="ar">تطبيق أندرويد من نفس كود الموقع</span><span class="en">Android app built from the same codebase as the web</span></li>
             </ul>
             <div class="stack"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Capacitor</span><span>Firebase</span></div>
           </div>
@@ -253,7 +264,7 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
         <div class="card">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
           <h3><span class="ar">تطبيقات الجوال</span><span class="en">Mobile apps</span></h3>
-          <p><span class="ar">تطبيقات أندرويد وiOS مرتبطة بنظامك وتعمل مع الإشعارات.</span><span class="en">Android and iOS apps connected to your system, with push notifications.</span></p>
+          <p><span class="ar">تطبيقات أندرويد مرتبطة بنظامك وتعمل مع الإشعارات.</span><span class="en">Android apps connected to your system, with push notifications.</span></p>
         </div>
         <div class="card">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
@@ -275,14 +286,19 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
         <div class="eyebrow"><span class="ar">عنّي</span><span class="en">About</span></div>
         <h2><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></h2>
         <p class="ar">مطوّر برمجيات من اليمن، أبني أنظمة لأصحاب الأعمال تحل مشاكل حقيقية في بيئة صعبة: انقطاع الكهرباء والإنترنت، وأجهزة متواضعة، ومستخدمون يريدون شيئاً بسيطاً يعمل.</p>
-        <p class="ar">أتولّى المشروع كاملاً: التصميم، والبرمجة، وقاعدة البيانات، وتطبيقات الجوال، والتثبيت والتحديثات بعد التسليم.</p>
+        <p class="ar">أتولّى المشروع كاملاً: التصميم، والبرمجة، وقاعدة البيانات، وتطبيقات الجوال، والتثبيت والتحديثات بعد التسليم. والتقنيات التي تراها في مشاريعي هي ما اخترته لكل حالة، لا حدود لما أعمل به.</p>
         <p class="en">A software developer from Yemen building systems for businesses in a demanding environment: power and internet outages, modest hardware, and users who want something simple that just works.</p>
-        <p class="en">I handle the whole project: design, code, database, mobile apps, installation and updates after delivery.</p>
+        <p class="en">I handle the whole project: design, code, database, mobile apps, installation and updates after delivery. The technologies in my projects are what each case called for, not the limit of what I work with.</p>
       </div>
-      <div class="skills">
-        <div><h4><span class="ar">سطح المكتب</span><span class="en">Desktop</span></h4><div class="stack"><span>C# / .NET</span><span>WPF</span><span>Electron</span></div></div>
-        <div><h4><span class="ar">الويب والجوال</span><span class="en">Web & mobile</span></h4><div class="stack"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>Capacitor</span><span>Android</span></div></div>
-        <div><h4><span class="ar">البيانات والسحابة</span><span class="en">Data & cloud</span></h4><div class="stack"><span>Supabase</span><span>PostgreSQL</span><span>SQLite</span><span>Firebase</span></div></div>
+      <div class="approach">
+        <h3><span class="ar">التقنية تخدم المشروع، لا العكس</span><span class="en">The project picks the tech, not the other way round</span></h3>
+        <p><span class="ar">لا أفرض أداة واحدة على كل مشروع. أبدأ بفهم احتياجك، ثم أختار ما يناسبه:</span><span class="en">I don't force one tool onto every project. I start from what you need, then choose what fits:</span></p>
+        <dl>
+          <div><dt><span class="ar">يجب أن يعمل بدون إنترنت؟</span><span class="en">Must work offline?</span></dt><dd><span class="ar">برنامج بقاعدة بيانات محلية يتزامن لاحقاً</span><span class="en">Local database that syncs later</span></dd></div>
+          <div><dt><span class="ar">عدة فروع أو مستخدمين؟</span><span class="en">Several branches or users?</span></dt><dd><span class="ar">نظام سحابي بصلاحيات لكل دور</span><span class="en">Cloud system with role-based access</span></dd></div>
+          <div><dt><span class="ar">عملاؤك على الجوال؟</span><span class="en">Your customers are on mobile?</span></dt><dd><span class="ar">تطبيق أندرويد أو موقع يعمل كتطبيق</span><span class="en">An Android app, or a web app that installs like one</span></dd></div>
+          <div><dt><span class="ar">ميزانية محدودة؟</span><span class="en">Tight budget?</span></dt><dd><span class="ar">أبسط حل يؤدي الغرض، دون تكاليف تشغيل شهرية</span><span class="en">The simplest thing that works, with no monthly running costs</span></dd></div>
+        </dl>
       </div>
     </div>
   </section>
