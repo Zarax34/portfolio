@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahmed-fatehi.pages.dev/sitemap.xml
