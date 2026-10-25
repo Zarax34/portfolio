@@ -9,142 +9,251 @@
 <meta name="theme-color" content="#0e7c66">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #fbfaf8;
+  --bg: #fafafa;
   --surface: #ffffff;
-  --ink: #17181a;
-  --muted: #5d6168;
-  --line: #e7e4df;
+  --ink: #18181b;
+  --muted: #52525b;
+  --faint: #a1a1aa;
+  --line: #e4e4e7;
   --accent: #0e7c66;
-  --accent-ink: #ffffff;
-  --accent-soft: #e7f3ef;
-  --radius: 14px;
-  --wrap: 1100px;
+  --accent-hover: #0b6a57;
+  --accent-soft: #e6f2ee;
+  --accent-light: #5fd3b6;
+  --dark-line: #2e2e33;
+  --shadow: 0 28px 56px -32px rgba(14, 76, 62, .32);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --radius: 16px;
+  --wrap: 1180px;
+  --dir: 1;
 }
+html[dir="rtl"] { --dir: -1; }
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font: 400 17px/1.75 "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
+  font: 400 17px/1.75 "Geist", "IBM Plex Sans Arabic", system-ui, "Segoe UI", Tahoma, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
+.mono { font-family: "Geist Mono", ui-monospace, Consolas, monospace; }
 
 /* language switch: content is written twice, CSS shows one */
 html[lang="ar"] .en, html[lang="en"] .ar { display: none !important; }
 
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 20px; }
-section { padding: 88px 0; scroll-margin-top: 64px; }
-.eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: .02em; }
-h2 { font-size: clamp(28px, 4vw, 38px); line-height: 1.3; margin: 6px 0 14px; }
-.lead { color: var(--muted); max-width: 640px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+section { padding: 112px 0; scroll-margin-top: 64px; }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; }
+h1, h2, h3 { font-weight: 700; }
+h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.25; margin-top: 8px; }
+html[lang="en"] h1, html[lang="en"] h2 { letter-spacing: -.03em; }
+.lead { color: var(--muted); max-width: 60ch; }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 22px; border-radius: 999px;
-  font-weight: 500; text-decoration: none; border: 1px solid var(--line);
-  transition: transform .15s ease, background-color .15s ease;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 24px; border-radius: 999px;
+  font-weight: 500; text-decoration: none; border: 1px solid var(--line); background: var(--surface);
+  transition: transform .4s var(--ease), background-color .3s var(--ease), border-color .3s var(--ease);
 }
-.btn:hover { transform: translateY(-1px); }
-.btn:focus-visible, .lang:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.btn-primary:hover { background: #0b6a57; }
+.btn:hover { transform: translateY(-2px); border-color: #d4d4d8; }
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn svg { transition: transform .4s var(--ease); }
+.btn:hover svg { transform: translateX(calc(var(--dir) * 3px)); }
+.flip { transform-box: fill-box; transform-origin: center; }
+html[dir="rtl"] .flip { transform: scaleX(-1); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* header */
 header {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(251, 250, 248, .9); backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
+  background: rgba(250, 250, 250, .78);
+  backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid rgba(228, 228, 231, .8);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .7);
 }
 .nav { display: flex; align-items: center; gap: 28px; height: 64px; }
-.brand { font-weight: 700; text-decoration: none; margin-inline-end: auto; display: flex; align-items: center; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; margin-inline-end: auto; }
 .brand img { width: 30px; height: 30px; }
-.nav-links { display: flex; gap: 24px; }
-.nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; }
+.nav-links { display: flex; gap: 26px; }
+.nav-links a { text-decoration: none; color: var(--muted); font-size: 15px; transition: color .3s; }
 .nav-links a:hover { color: var(--ink); }
+.nav-tools { display: flex; align-items: center; gap: 8px; }
 .lang {
-  font: inherit; font-size: 14px; font-weight: 500; cursor: pointer;
+  font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--ink);
   background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
 }
+.nav-cta { padding: 7px 16px; font-size: 14px; }
 
 /* hero */
-.hero { padding: 96px 0 72px; }
-.hero h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.2; max-width: 780px; margin: 10px 0 20px; }
+.hero { padding: 72px 0 104px; overflow: hidden; }
+.hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+.status {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--muted);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
+}
+.pulse { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.pulse::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--accent); animation: ping 2.4s var(--ease) infinite; }
+@keyframes ping { 0% { transform: scale(1); opacity: .55; } 80%, 100% { transform: scale(2.8); opacity: 0; } }
+.hero h1 { font-size: clamp(34px, 4.8vw, 54px); line-height: 1.2; margin: 22px 0 20px; }
 .hero h1 em { font-style: normal; color: var(--accent); }
-.hero .lead { font-size: 19px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.platforms { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 44px; color: var(--muted); font-size: 15px; }
-.platforms span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; background: var(--surface); }
+.hero .lead { font-size: 18px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.platforms { display: flex; gap: 18px; margin-top: 40px; font-size: 13px; color: var(--faint); }
+
+.hero-art { position: relative; aspect-ratio: 1 / .86; }
+.art {
+  position: absolute; overflow: hidden; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.art img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.art-back { top: 0; inset-inline-start: 0; width: 84%; aspect-ratio: 16 / 10.4; }
+.art-front { bottom: 0; inset-inline-end: 0; width: 80%; aspect-ratio: 16 / 9; animation: float 9s ease-in-out infinite; }
+.art-tile {
+  top: 50%; inset-inline-start: -2%; width: 23%; aspect-ratio: 1; border-radius: 22px;
+  display: grid; place-items: center; animation: float 7s ease-in-out -2s infinite;
+}
+.art-tile img { width: 76%; height: auto; object-fit: contain; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* section heads */
+.head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; }
+.head .lead { justify-self: end; }
 
 /* projects */
 #work { background: var(--surface); border-block: 1px solid var(--line); }
-.projects { display: grid; gap: 72px; margin-top: 48px; }
-.project { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+.projects { display: grid; gap: 112px; margin-top: 72px; }
+.project { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
 .project:nth-child(even) .shot { order: 2; }
-.shot {
-  border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line);
-  background: var(--bg); box-shadow: 0 18px 40px -24px rgba(23, 24, 26, .35);
-}
-.shot img { width: 100%; height: auto; }
-.shot.logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: #fff; }
-.shot.logo img { width: 46%; }
-.tag { display: inline-block; font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
-.project h3 { font-size: 26px; margin: 12px 0 8px; }
+.shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--bg); box-shadow: var(--shadow); }
+.shot img { width: 100%; height: auto; transition: transform .8s var(--ease); }
+.shot:hover img { transform: scale(1.02); }
+.shot.logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--surface); }
+.shot.logo img { width: 44%; }
+.meta { display: flex; align-items: center; gap: 12px; }
+.num { font-size: 13px; color: var(--faint); }
+.tag { font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
+.project h3 { font-size: 28px; line-height: 1.3; margin: 14px 0 10px; }
 .project p { color: var(--muted); }
-.features { list-style: none; padding: 0; margin: 18px 0; display: grid; gap: 8px; }
+.features { list-style: none; padding: 0; margin: 20px 0 24px; display: grid; gap: 8px; }
 .features li { padding-inline-start: 22px; position: relative; }
-.features li::before { content: ""; position: absolute; inset-inline-start: 0; top: .7em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.stack { display: flex; flex-wrap: wrap; gap: 6px; }
-.stack span { font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; direction: ltr; }
-.project .stack { align-items: center; }
-.project .stack::before { font-size: 13px; color: var(--muted); margin-inline-end: 4px; }
-html[lang="ar"] .project .stack::before { content: "اخترتُ لهذا المشروع:"; }
-html[lang="en"] .project .stack::before { content: "Chosen for this project:"; }
+.features li::before { content: ""; position: absolute; inset-inline-start: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.stack span { font-family: "Geist Mono", ui-monospace, Consolas, monospace; font-size: 12.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; direction: ltr; }
+.stack::before { font-size: 13px; color: var(--faint); margin-inline-end: 4px; }
+html[lang="ar"] .stack::before { content: "اخترتُ لهذا المشروع:"; }
+html[lang="en"] .stack::before { content: "Chosen for this project:"; }
 
-/* services */
-.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
-.card .icon { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 14px; }
-.card h3 { font-size: 18px; margin-bottom: 6px; }
-.card p { color: var(--muted); font-size: 15px; }
+/* services bento */
+.bento { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 16px; margin-top: 56px; }
+.tile {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 30px;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.tile h3 { font-size: 19px; margin: 18px 0 6px; }
+.tile p { color: var(--muted); font-size: 15px; }
+.tile .icon { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.tile-feature { grid-row: span 2; background: var(--accent-soft); border-color: transparent; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.tile-feature h3 { font-size: 24px; margin-top: 0; }
+.tile-feature p { color: #3f5e56; font-size: 16px; }
+.tile-wide { grid-column: span 2; }
+
+.sync { display: flex; align-items: center; gap: 14px; }
+.sync .node { width: 56px; height: 56px; border-radius: 16px; background: var(--surface); display: grid; place-items: center; color: var(--accent); flex: none; box-shadow: 0 10px 24px -16px rgba(14, 76, 62, .5); }
+.wire {
+  position: relative; flex: 1; height: 10px; overflow: hidden;
+  background: linear-gradient(to left, #9cc9bd 50%, transparent 50%) center / 10px 2px repeat-x;
+}
+.lane { position: absolute; inset: 0; animation: travel 4.2s var(--ease) infinite; }
+.lane::before { content: ""; position: absolute; inset-inline-start: 0; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+@keyframes travel {
+  0%, 12% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: translateX(calc(var(--dir) * (100% - 10px))); opacity: 1; }
+  70%, 100% { transform: translateX(calc(var(--dir) * (100% - 10px))); opacity: 0; }
+}
+.sync-status { display: grid; margin-top: 14px; font-size: 13px; font-weight: 500; }
+.sync-status > span { grid-area: 1 / 1; display: inline-flex; align-items: center; gap: 8px; }
+.sync-status > span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; }
+.s-local { color: #8a5a00; animation: show-a 4.2s infinite; }
+.s-local::before { background: #d4a017; }
+.s-synced { color: var(--accent); opacity: 0; animation: show-b 4.2s infinite; }
+.s-synced::before { background: var(--accent); }
+@keyframes show-a { 0%, 55% { opacity: 1; } 62%, 100% { opacity: 0; } }
+@keyframes show-b { 0%, 58% { opacity: 0; } 64%, 96% { opacity: 1; } 100% { opacity: 0; } }
 
 /* about */
-.about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
-.about p + p { margin-top: 14px; }
-.approach { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-.approach h3 { font-size: 20px; margin-bottom: 6px; }
-.approach > p { color: var(--muted); font-size: 15px; }
-.approach dl { display: grid; gap: 14px; margin-top: 18px; }
+.about { display: grid; grid-template-columns: 1.15fr 1fr; gap: 72px; align-items: start; }
+.about p + p { margin-top: 16px; }
+.about .text p { color: var(--muted); }
+.approach { border-top: 2px solid var(--ink); padding-top: 24px; }
+.approach h3 { font-size: 20px; line-height: 1.4; }
+.approach > p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+.approach dl { margin-top: 18px; }
+.approach dl > div { display: grid; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .approach dt { font-weight: 500; }
 .approach dd { margin: 0; color: var(--accent); font-size: 15px; }
 
 /* contact */
-#contact { background: var(--ink); color: #f3f2ef; text-align: center; }
-#contact .lead { color: #b9bcc2; margin: 0 auto; }
-#contact .eyebrow { color: #5fd3b6; }
-#contact .hero-actions { justify-content: center; }
-#contact .btn:not(.btn-primary) { border-color: #3a3c40; }
-
-footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: center; padding: 0 0 32px; }
-
-@media (max-width: 860px) {
-  section { padding: 64px 0; }
-  .nav-links { display: none; }
-  .project, .about { grid-template-columns: 1fr; gap: 24px; }
-  .project:nth-child(even) .shot { order: 0; }
-  .services { grid-template-columns: 1fr 1fr; }
+#contact { background: var(--ink); color: #f4f4f5; }
+#contact .eyebrow { color: var(--accent-light); }
+#contact .lead { color: var(--faint); margin-top: 14px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: start; }
+.links { border-top: 1px solid var(--dark-line); }
+.link-row {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px;
+  padding: 22px 4px; border-bottom: 1px solid var(--dark-line); text-decoration: none;
 }
-@media (max-width: 520px) {
-  .services { grid-template-columns: 1fr; }
-  .hero { padding: 64px 0 48px; }
+.link-row small { grid-column: 1; font-size: 13px; color: var(--faint); }
+.link-row strong { grid-column: 1; font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; direction: ltr; text-align: start; transition: color .3s var(--ease); }
+html[dir="rtl"] .link-row strong { text-align: right; }
+.link-row svg { grid-column: 2; grid-row: 1 / 3; color: var(--faint); transition: transform .5s var(--ease), color .3s; }
+.link-row:hover strong { color: var(--accent-light); }
+.link-row:hover svg { color: var(--accent-light); transform: translateX(calc(var(--dir) * 6px)); }
+.link-row:active { transform: scale(.995); }
+
+footer { background: var(--ink); color: #71717a; font-size: 14px; padding: 0 0 36px; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; border-top: 1px solid var(--dark-line); padding-top: 28px; }
+footer .brand { color: #d4d4d8; font-weight: 500; margin: 0; }
+footer .brand img { width: 22px; height: 22px; }
+
+/* scroll reveal: only hides content once JS is confirmed */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+@media (max-width: 960px) {
+  section { padding: 80px 0; }
+  .nav-links { display: none; }
+  .hero { padding-top: 48px; }
+  .hero-grid, .project, .about, .contact-grid, .head { grid-template-columns: 1fr; gap: 40px; }
+  .head { gap: 12px; }
+  .head .lead { justify-self: start; }
+  .hero-art { max-width: 560px; width: 100%; justify-self: center; }
+  .projects { gap: 80px; }
+  .project { gap: 28px; }
+  .project:nth-child(even) .shot { order: 0; }
+  .bento { grid-template-columns: 1fr 1fr; }
+  .tile-feature { grid-row: auto; grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; }
+  .nav-cta { display: none; }
+  .bento { grid-template-columns: 1fr; }
+  .tile-feature, .tile-wide { grid-column: auto; }
+  footer .wrap { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn { transition: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .s-synced { display: none; }
 }
 </style>
 </head>
@@ -159,42 +268,58 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
       <a href="#about"><span class="ar">عنّي</span><span class="en">About</span></a>
       <a href="#contact"><span class="ar">تواصل</span><span class="en">Contact</span></a>
     </nav>
-    <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+    <div class="nav-tools">
+      <a class="btn btn-primary nav-cta" href="https://wa.me/967775738156" target="_blank" rel="noopener"><span class="ar">راسلني</span><span class="en">Message me</span></a>
+      <button class="lang" id="lang" type="button" aria-label="Switch language">EN</button>
+    </div>
   </div>
 </header>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <div class="eyebrow"><span class="ar">مطوّر تطبيقات وأنظمة · اليمن</span><span class="en">Software developer · Yemen</span></div>
-      <h1>
-        <span class="ar">أبني أنظمة <em>تعمل فعلاً</em>، حتى حين ينقطع الإنترنت.</span>
-        <span class="en">I build software that <em>keeps working</em>, even when the internet doesn't.</span>
-      </h1>
-      <p class="lead">
-        <span class="ar">أطوّر برامج سطح المكتب وتطبيقات الجوال وأنظمة الويب للمحلات والمؤسسات والمراكز التعليمية، من الفكرة حتى التثبيت والتحديث التلقائي عند العميل.</span>
-        <span class="en">Desktop, mobile and web systems for shops, offices and education centers, from the first idea to installation and automatic updates on the client's machines.</span>
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#work"><span class="ar">شاهد أعمالي</span><span class="en">See my work</span></a>
-        <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="status reveal"><span class="pulse"></span><span class="ar">متاح لمشاريع جديدة</span><span class="en">Available for new projects</span></span>
+        <h1 class="reveal" style="--i:1">
+          <span class="ar">أبني أنظمة <em>تعمل فعلاً</em>، حتى حين ينقطع الإنترنت.</span>
+          <span class="en">I build software that <em>keeps working</em>, even when the internet doesn't.</span>
+        </h1>
+        <p class="lead reveal" style="--i:2">
+          <span class="ar">أطوّر برامج سطح المكتب وتطبيقات الجوال وأنظمة الويب للمحلات والمؤسسات والمراكز التعليمية، من الفكرة حتى التثبيت والتحديث التلقائي عند العميل.</span>
+          <span class="en">Desktop, mobile and web systems for shops, offices and education centers, from the first idea to installation and automatic updates on the client's machines.</span>
+        </p>
+        <div class="actions reveal" style="--i:3">
+          <a class="btn btn-primary" href="#work"><span class="ar">شاهد أعمالي</span><span class="en">See my work</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
+        </div>
+        <div class="platforms mono reveal" style="--i:4"><span>Windows</span><span>Android</span><span>Web</span></div>
       </div>
-      <div class="platforms">
-        <span>Windows</span><span>Android</span><span>Web</span>
+
+      <div class="hero-art reveal" style="--i:2" aria-hidden="true">
+        <div class="art art-back"><img src="images/swiftdoc.jpg" width="1280" height="680" alt=""></div>
+        <div class="art art-front"><img src="images/cafepos.jpg" width="1280" height="720" alt=""></div>
+        <div class="art art-tile"><img src="images/quran.jpg" width="420" height="420" alt=""></div>
       </div>
     </div>
   </section>
 
   <section id="work">
     <div class="wrap">
-      <div class="eyebrow"><span class="ar">أعمال مختارة</span><span class="en">Selected work</span></div>
-      <h2><span class="ar">مشاريع تعمل عند عملاء حقيقيين</span><span class="en">Systems in real daily use</span></h2>
+      <div class="head">
+        <div class="reveal">
+          <div class="eyebrow"><span class="ar">أعمال مختارة</span><span class="en">Selected work</span></div>
+          <h2><span class="ar">مشاريع تعمل عند عملاء حقيقيين</span><span class="en">Systems in real daily use</span></h2>
+        </div>
+        <p class="lead reveal" style="--i:1"><span class="ar">ثلاثة أنظمة مختلفة تماماً، لكل منها مشكلة مختلفة وحل صُمّم لها تحديداً.</span><span class="en">Three very different systems, each built around its own problem.</span></p>
+      </div>
 
       <div class="projects">
         <article class="project">
-          <div class="shot"><img src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="شاشة إدارة المنتجات في نظام الكافيه"></div>
-          <div>
-            <span class="tag"><span class="ar">نقطة بيع · سطح المكتب + أندرويد</span><span class="en">Point of sale · Desktop + Android</span></span>
+          <div class="shot reveal"><img src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="شاشة إدارة المنتجات في نظام الكافيه"></div>
+          <div class="reveal" style="--i:1">
+            <div class="meta"><span class="num mono">01</span><span class="tag"><span class="ar">نقطة بيع · سطح المكتب + أندرويد</span><span class="en">Point of sale · Desktop + Android</span></span></div>
             <h3><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></h3>
             <p>
               <span class="ar">نظام نقاط بيع متكامل للمقاهي والمطاعم. البيع يعمل محلياً دائماً، والبيانات تُرفع للسحابة تلقائياً عند عودة الاتصال.</span>
@@ -211,9 +336,9 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
         </article>
 
         <article class="project">
-          <div class="shot logo"><img src="images/quran.jpg" width="420" height="420" loading="lazy" alt="شعار تطبيق مراكز تحفيظ القرآن"></div>
-          <div>
-            <span class="tag"><span class="ar">منصة تعليمية · ويب + جوال</span><span class="en">Education platform · Web + Mobile</span></span>
+          <div class="shot logo reveal"><img src="images/quran.jpg" width="420" height="420" loading="lazy" alt="شعار تطبيق مراكز تحفيظ القرآن"></div>
+          <div class="reveal" style="--i:1">
+            <div class="meta"><span class="num mono">02</span><span class="tag"><span class="ar">منصة تعليمية · ويب + جوال</span><span class="en">Education platform · Web + Mobile</span></span></div>
             <h3><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></h3>
             <p>
               <span class="ar">نظام متكامل لإدارة مراكز تحفيظ القرآن الكريم، يجمع المدير والمعلم وولي الأمر والطالب في منصة واحدة على الويب والجوال.</span>
@@ -230,9 +355,9 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
         </article>
 
         <article class="project">
-          <div class="shot"><img src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="شاشة عرض الأرشيف في نظام Swift Doc"></div>
-          <div>
-            <span class="tag"><span class="ar">أرشفة إلكترونية · سطح المكتب</span><span class="en">Document archiving · Desktop</span></span>
+          <div class="shot reveal"><img src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="شاشة عرض الأرشيف في نظام Swift Doc"></div>
+          <div class="reveal" style="--i:1">
+            <div class="meta"><span class="num mono">03</span><span class="tag"><span class="ar">أرشفة إلكترونية · سطح المكتب</span><span class="en">Document archiving · Desktop</span></span></div>
             <h3>Swift Doc</h3>
             <p>
               <span class="ar">نظام أرشفة إلكترونية للمؤسسات والسكرتارية، يحفظ المستندات مشفّرة ويربط المقر الرئيسي بالفروع.</span>
@@ -253,28 +378,49 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
 
   <section id="services">
     <div class="wrap">
-      <div class="eyebrow"><span class="ar">ماذا أقدّم</span><span class="en">What I do</span></div>
-      <h2><span class="ar">الخدمات</span><span class="en">Services</span></h2>
-      <div class="services">
-        <div class="card">
+      <div class="head">
+        <div class="reveal">
+          <div class="eyebrow"><span class="ar">ماذا أقدّم</span><span class="en">What I do</span></div>
+          <h2><span class="ar">الخدمات</span><span class="en">Services</span></h2>
+        </div>
+        <p class="lead reveal" style="--i:1"><span class="ar">من برنامج واحد لمحل صغير، إلى نظام يربط عدة فروع وتطبيقات.</span><span class="en">From a single program for a small shop to a system linking branches and apps.</span></p>
+      </div>
+
+      <div class="bento">
+        <div class="tile tile-feature reveal">
+          <div>
+            <h3><span class="ar">أنظمة تعمل بدون إنترنت</span><span class="en">Offline-first systems</span></h3>
+            <p><span class="ar">البيع والأرشفة والتسجيل لا تتوقف حين ينقطع الاتصال. كل شيء يُحفظ محلياً أولاً، ثم يتزامن مع السحابة تلقائياً عند عودة الإنترنت.</span><span class="en">Sales, archiving and records keep going when the connection drops. Everything is saved locally first, then syncs to the cloud automatically when the internet is back.</span></p>
+          </div>
+          <div aria-hidden="true">
+            <div class="sync">
+              <div class="node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <div class="wire"><span class="lane"></span></div>
+              <div class="node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 6 16.3"/><path d="M6 16.3A4 4 0 0 0 7.5 19h10"/></svg></div>
+            </div>
+            <div class="sync-status">
+              <span class="s-local"><span class="ar">محفوظ محلياً</span><span class="en">Saved locally</span></span>
+              <span class="s-synced"><span class="ar">تمت المزامنة</span><span class="en">Synced</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tile reveal" style="--i:1">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
           <h3><span class="ar">برامج سطح المكتب</span><span class="en">Desktop software</span></h3>
-          <p><span class="ar">أنظمة نقاط بيع ومخازن وأرشفة لويندوز، مع مثبّت وتحديث تلقائي.</span><span class="en">POS, inventory and archiving systems for Windows, with installers and auto-updates.</span></p>
+          <p><span class="ar">نقاط بيع ومخازن وأرشفة لويندوز، مع مثبّت وتحديث تلقائي.</span><span class="en">POS, inventory and archiving for Windows, with installers and auto-updates.</span></p>
         </div>
-        <div class="card">
+
+        <div class="tile reveal" style="--i:2">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
           <h3><span class="ar">تطبيقات الجوال</span><span class="en">Mobile apps</span></h3>
           <p><span class="ar">تطبيقات أندرويد مرتبطة بنظامك وتعمل مع الإشعارات.</span><span class="en">Android apps connected to your system, with push notifications.</span></p>
         </div>
-        <div class="card">
+
+        <div class="tile tile-wide reveal" style="--i:3">
           <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
           <h3><span class="ar">أنظمة الويب</span><span class="en">Web systems</span></h3>
-          <p><span class="ar">لوحات تحكم ومنصات متعددة المستخدمين والصلاحيات.</span><span class="en">Dashboards and multi-user platforms with roles and permissions.</span></p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 1 0-1.4-8.8A6 6 0 1 0 6 16.3"/><path d="M12 12v9M9 18l3 3 3-3"/></svg></div>
-          <h3><span class="ar">العمل بدون إنترنت</span><span class="en">Offline-first sync</span></h3>
-          <p><span class="ar">أنظمة تعمل محلياً وتتزامن مع السحابة عند توفر الاتصال.</span><span class="en">Systems that run locally and sync to the cloud when a connection is available.</span></p>
+          <p><span class="ar">لوحات تحكم ومنصات متعددة المستخدمين، بصلاحيات مختلفة لكل دور: مدير، موظف، عميل.</span><span class="en">Dashboards and multi-user platforms with different permissions for each role: admin, staff, customer.</span></p>
         </div>
       </div>
     </div>
@@ -282,15 +428,15 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
 
   <section id="about" style="padding-top: 0">
     <div class="wrap about">
-      <div>
+      <div class="text reveal">
         <div class="eyebrow"><span class="ar">عنّي</span><span class="en">About</span></div>
-        <h2><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></h2>
+        <h2 style="margin-bottom: 18px"><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></h2>
         <p class="ar">مطوّر برمجيات من اليمن، أبني أنظمة لأصحاب الأعمال تحل مشاكل حقيقية في بيئة صعبة: انقطاع الكهرباء والإنترنت، وأجهزة متواضعة، ومستخدمون يريدون شيئاً بسيطاً يعمل.</p>
         <p class="ar">أتولّى المشروع كاملاً: التصميم، والبرمجة، وقاعدة البيانات، وتطبيقات الجوال، والتثبيت والتحديثات بعد التسليم. والتقنيات التي تراها في مشاريعي هي ما اخترته لكل حالة، لا حدود لما أعمل به.</p>
         <p class="en">A software developer from Yemen building systems for businesses in a demanding environment: power and internet outages, modest hardware, and users who want something simple that just works.</p>
         <p class="en">I handle the whole project: design, code, database, mobile apps, installation and updates after delivery. The technologies in my projects are what each case called for, not the limit of what I work with.</p>
       </div>
-      <div class="approach">
+      <div class="approach reveal" style="--i:1">
         <h3><span class="ar">التقنية تخدم المشروع، لا العكس</span><span class="en">The project picks the tech, not the other way round</span></h3>
         <p><span class="ar">لا أفرض أداة واحدة على كل مشروع. أبدأ بفهم احتياجك، ثم أختار ما يناسبه:</span><span class="en">I don't force one tool onto every project. I start from what you need, then choose what fits:</span></p>
         <dl>
@@ -304,28 +450,44 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
   </section>
 
   <section id="contact">
-    <div class="wrap">
-      <div class="eyebrow"><span class="ar">لنعمل معاً</span><span class="en">Let's work together</span></div>
-      <h2><span class="ar">عندك فكرة نظام أو تطبيق؟</span><span class="en">Have a system or app in mind?</span></h2>
-      <p class="lead"><span class="ar">أرسل لي فكرتك وسأرد عليك بتصور أولي ومدة تقريبية.</span><span class="en">Send me your idea and I'll reply with an initial plan and a rough timeline.</span></p>
-      <div class="hero-actions">
-        <!-- TODO: ضع رقمك بالصيغة الدولية بدون + أو أصفار، مثل 967771234567 -->
-        <a class="btn btn-primary" href="https://wa.me/967000000000" target="_blank" rel="noopener"><span class="ar">راسلني على واتساب</span><span class="en">Message me on WhatsApp</span></a>
-        <!-- TODO: ضع بريدك -->
-        <a class="btn" href="mailto:you@example.com"><span class="ar">البريد الإلكتروني</span><span class="en">Email</span></a>
-        <!-- TODO: ضع رابط حسابك -->
-        <a class="btn" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="ar">لنعمل معاً</span><span class="en">Let's work together</span></div>
+        <h2><span class="ar">عندك فكرة نظام أو تطبيق؟</span><span class="en">Have a system or app in mind?</span></h2>
+        <p class="lead"><span class="ar">أرسل لي فكرتك وسأرد عليك بتصور أولي ومدة تقريبية.</span><span class="en">Send me your idea and I'll reply with an initial plan and a rough timeline.</span></p>
+      </div>
+      <div class="links reveal" style="--i:1">
+        <a class="link-row" href="https://wa.me/967775738156" target="_blank" rel="noopener">
+          <small><span class="ar">واتساب</span><span class="en">WhatsApp</span></small>
+          <strong class="mono">+967 775 738 156</strong>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="link-row" href="mailto:ahmedalslwy4x@gmail.com">
+          <small><span class="ar">البريد الإلكتروني</span><span class="en">Email</span></small>
+          <strong>ahmedalslwy4x@gmail.com</strong>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="link-row" href="https://github.com/Zarax34" target="_blank" rel="noopener">
+          <small>GitHub</small>
+          <strong>github.com/Zarax34</strong>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">© <span id="year">2026</span> <span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></div>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="favicon.svg" alt=""><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></a>
+    <span>© <span id="year">2026</span></span>
+  </div>
 </footer>
 
 <script>
   const root = document.documentElement;
+  root.classList.add('js');
+
   const btn = document.getElementById('lang');
   const titles = { ar: 'أحمد فتحي | مطور تطبيقات وأنظمة', en: 'Ahmed Fathi | Software Developer' };
   function setLang(lang) {
@@ -340,6 +502,20 @@ footer { background: var(--ink); color: #8a8d93; font-size: 14px; text-align: ce
   if (saved === 'en') setLang('en');
   btn.addEventListener('click', () => setLang(root.lang === 'ar' ? 'en' : 'ar'));
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach((el) => io.observe(el));
+  } else {
+    items.forEach((el) => el.classList.add('in'));
+  }
 </script>
 </body>
 </html>
