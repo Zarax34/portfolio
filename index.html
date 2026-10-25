@@ -167,9 +167,10 @@ header {
   box-shadow: 0 18px 32px -20px rgba(14, 76, 62, .7);
 }
 .phones img:nth-child(2) { width: 30%; transform: translateY(-5%); }
-.screen .phones { flex: 1; min-height: 0; aspect-ratio: auto; padding: 12px 8%; }
-.screen .phones img { width: auto; height: 86%; border-width: 4px; border-radius: 16px; }
-.screen .phones img:nth-child(2) { width: auto; height: 96%; }
+/* inside the hero window: sized by width only (no % heights), phones rise from the bottom edge */
+.screen .phones { flex: 1; min-height: 0; aspect-ratio: auto; align-items: flex-start; overflow: hidden; padding: 16px 8% 0; }
+.screen .phones img { width: 21%; margin-top: 6%; border-width: 4px; border-radius: 16px; }
+.screen .phones img:nth-child(2) { width: 24%; margin-top: 0; transform: none; }
 
 .buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 
@@ -332,6 +333,16 @@ footer .brand img { width: 22px; height: 22px; }
   .orb { width: 54px; height: 54px; }
   .custom { padding: 24px 16px; }
   .custom-form { padding: 22px 18px; }
+  /* phones are too small side by side: one large phone in the hero, a swipeable strip in the apps section */
+  .screen .phones img:not(:nth-child(2)) { display: none; }
+  .screen .phones img:nth-child(2) { width: 46%; }
+  .project .phones {
+    justify-content: flex-start; aspect-ratio: auto; gap: 14px; padding: 20px;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .project .phones::-webkit-scrollbar { display: none; }
+  .project .phones img, .project .phones img:nth-child(2) { flex: none; width: 60%; transform: none; scroll-snap-align: center; }
+  .project .phones img:nth-child(2) { order: -1; }
   .bento { grid-template-columns: 1fr; }
   .tile-feature, .tile-wide { grid-column: auto; }
   footer .wrap { flex-direction: column; }
