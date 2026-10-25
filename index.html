@@ -54,6 +54,7 @@ html[lang="en"] h1, html[lang="en"] h2 { letter-spacing: -.03em; }
 .lead { color: var(--muted); max-width: 60ch; }
 
 .btn {
+  font: inherit; color: inherit; cursor: pointer;
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 24px; border-radius: 999px;
   font-weight: 500; text-decoration: none; border: 1px solid var(--line); background: var(--surface);
@@ -171,6 +172,46 @@ header {
 .screen .phones img:nth-child(2) { width: auto; height: 96%; }
 
 .buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+
+/* custom app request */
+.custom {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start;
+  margin-top: 120px; padding: 48px; border-radius: 28px; background: var(--accent-soft); scroll-margin-top: 88px;
+}
+.custom h3 { font-size: 28px; line-height: 1.35; margin: 8px 0 12px; }
+.custom-intro > p { color: #3f5e56; }
+.steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; counter-reset: step; }
+.steps li { display: flex; align-items: center; gap: 12px; counter-increment: step; }
+.steps li::before {
+  content: counter(step); flex: none; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center; font: 500 13px "Geist Mono", ui-monospace, monospace;
+  background: var(--surface); color: var(--accent);
+}
+.custom-form { display: grid; gap: 22px; padding: 30px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
+.custom-form fieldset { border: 0; padding: 0; margin: 0; }
+.custom-form legend, .field label { font-size: 14px; font-weight: 500; margin-bottom: 10px; padding: 0; }
+.types { display: flex; flex-wrap: wrap; gap: 8px; }
+.type { position: relative; }
+.type input { position: absolute; opacity: 0; pointer-events: none; }
+.type > span {
+  display: inline-block; padding: 7px 15px; font-size: 14px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; transition: background-color .25s var(--ease), color .25s, border-color .25s;
+}
+.type > span:hover { border-color: #c7c7cc; }
+.type input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; }
+.type input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.field { display: grid; gap: 8px; }
+.field label { margin: 0; }
+.field input, .field textarea {
+  width: 100%; font: inherit; font-size: 15px; color: var(--ink); background: var(--bg);
+  padding: 11px 14px; border: 1px solid var(--line); border-radius: 12px; resize: vertical;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.field small { font-size: 13px; color: var(--faint); }
+.field .error { color: #b42318; }
+.field.invalid textarea { border-color: #b42318; }
+.custom-form .btn { justify-self: start; }
 .meta { display: flex; align-items: center; gap: 12px; }
 .num { font-size: 13px; color: var(--faint); }
 .tag { font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
@@ -281,6 +322,7 @@ footer .brand img { width: 22px; height: 22px; }
   .projects { gap: 80px; }
   .project { gap: 28px; }
   .project:nth-child(even) .media { order: 0; }
+  .custom { grid-template-columns: 1fr; gap: 32px; margin-top: 88px; padding: 32px 24px; }
   .bento { grid-template-columns: 1fr 1fr; }
   .tile-feature { grid-row: auto; grid-column: span 2; }
 }
@@ -288,6 +330,8 @@ footer .brand img { width: 22px; height: 22px; }
   .wrap { padding: 0 16px; }
   .nav-cta { display: none; }
   .orb { width: 54px; height: 54px; }
+  .custom { padding: 24px 16px; }
+  .custom-form { padding: 22px 18px; }
   .bento { grid-template-columns: 1fr; }
   .tile-feature, .tile-wide { grid-column: auto; }
   footer .wrap { flex-direction: column; }
@@ -335,7 +379,7 @@ footer .brand img { width: 22px; height: 22px; }
           <a class="btn btn-primary" href="#work"><span class="ar">تصفّح التطبيقات</span><span class="en">Browse the apps</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
+          <a class="btn" href="#custom"><span class="ar">اطلب تطبيقاً مخصصاً</span><span class="en">Request a custom app</span></a>
         </div>
         <div class="platforms mono reveal" style="--i:4"><span>Windows</span><span>Android</span><span>Web</span></div>
       </div>
@@ -478,6 +522,45 @@ footer .brand img { width: 22px; height: 22px; }
           </div>
         </article>
       </div>
+
+      <div class="custom reveal" id="custom">
+        <div class="custom-intro">
+          <div class="eyebrow"><span class="ar">تطبيق مخصص</span><span class="en">Custom app</span></div>
+          <h3><span class="ar">لم تجد ما تحتاجه؟ أبنيه لك.</span><span class="en">Didn't find what you need? I'll build it.</span></h3>
+          <p><span class="ar">صف فكرتك باختصار، وتصلني على واتساب مع نوع التطبيق، لأرد عليك بتصور أولي ومدة وسعر تقريبي.</span><span class="en">Describe your idea briefly and it reaches me on WhatsApp with the app type, so I can reply with an initial plan, timeline and rough price.</span></p>
+          <ol class="steps">
+            <li><span class="ar">تصف فكرتك هنا</span><span class="en">You describe your idea here</span></li>
+            <li><span class="ar">نتفق على التفاصيل والسعر</span><span class="en">We agree on details and price</span></li>
+            <li><span class="ar">أبني التطبيق وأسلّمه وأثبّته لك</span><span class="en">I build, deliver and install it for you</span></li>
+          </ol>
+        </div>
+
+        <form class="custom-form" novalidate>
+          <fieldset>
+            <legend><span class="ar">نوع التطبيق</span><span class="en">App type</span></legend>
+            <div class="types">
+              <label class="type"><input type="radio" name="type" value="desktop" checked><span><span class="ar">برنامج سطح مكتب</span><span class="en">Desktop software</span></span></label>
+              <label class="type"><input type="radio" name="type" value="mobile"><span><span class="ar">تطبيق جوال</span><span class="en">Mobile app</span></span></label>
+              <label class="type"><input type="radio" name="type" value="web"><span><span class="ar">موقع أو نظام ويب</span><span class="en">Website or web system</span></span></label>
+              <label class="type"><input type="radio" name="type" value="unsure"><span><span class="ar">غير متأكد بعد</span><span class="en">Not sure yet</span></span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="biz"><span class="ar">اسم النشاط أو المنشأة (اختياري)</span><span class="en">Business name (optional)</span></label>
+            <input id="biz" name="biz" type="text" autocomplete="organization" data-ph-ar="مثلاً: صيدلية الشفاء" data-ph-en="e.g. Al-Shifa Pharmacy">
+          </div>
+          <div class="field">
+            <label for="idea"><span class="ar">فكرتك</span><span class="en">Your idea</span></label>
+            <textarea id="idea" name="idea" rows="4" required aria-describedby="idea-hint idea-error" data-ph-ar="ماذا تريد أن يفعل التطبيق؟" data-ph-en="What should the app do?"></textarea>
+            <small id="idea-hint"><span class="ar">مثلاً: نظام لإدارة صيدلية بفرعين، مع مخزون وتقارير يومية</span><span class="en">e.g. a system for a two-branch pharmacy with stock and daily reports</span></small>
+            <small id="idea-error" class="error" role="alert" hidden><span class="ar">اكتب وصفاً قصيراً لفكرتك (10 أحرف على الأقل)</span><span class="en">Write a short description of your idea (at least 10 characters)</span></small>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            <span class="ar">أرسل الطلب على واتساب</span><span class="en">Send request on WhatsApp</span>
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -611,11 +694,38 @@ footer .brand img { width: 22px; height: 22px; }
     document.title = titles[lang];
     btn.textContent = lang === 'ar' ? 'EN' : 'عربي';
     updateOrders(lang);
+    document.querySelectorAll('[data-ph-ar]').forEach((el) => { el.placeholder = el.dataset[lang === 'ar' ? 'phAr' : 'phEn']; });
     try { localStorage.setItem('lang', lang); } catch (e) {}
   }
   let saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
   setLang(saved === 'en' ? 'en' : 'ar');
+
+  const MIN_IDEA = 10;
+  const customForm = document.querySelector('.custom-form');
+  const ideaField = customForm.idea.closest('.field');
+  function checkIdea() {
+    const ok = customForm.idea.value.trim().length >= MIN_IDEA;
+    ideaField.classList.toggle('invalid', !ok);
+    ideaField.querySelector('.error').hidden = ok;
+    customForm.idea.setAttribute('aria-invalid', String(!ok));
+    return ok;
+  }
+  customForm.idea.addEventListener('input', () => { if (ideaField.classList.contains('invalid')) checkIdea(); });
+  customForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!checkIdea()) { customForm.idea.focus(); return; }
+    const lang = root.lang;
+    const type = customForm.querySelector('input[name="type"]:checked').closest('label').querySelector('.' + lang).textContent;
+    const biz = customForm.biz.value.trim();
+    const idea = customForm.idea.value.trim();
+    const lines = lang === 'ar'
+      ? ['مرحباً أحمد، أريد طلب تطبيق مخصص.', `نوع التطبيق: ${type}`, biz && `النشاط: ${biz}`, `الفكرة: ${idea}`]
+      : ['Hi Ahmed, I\'d like to request a custom app.', `App type: ${type}`, biz && `Business: ${biz}`, `Idea: ${idea}`];
+    const url = WHATSAPP + encodeURIComponent(lines.filter(Boolean).join('\n'));
+    const win = window.open(url, '_blank');
+    if (win) win.opener = null; else location.href = url;
+  });
 
   document.querySelectorAll('.gallery').forEach((gallery) => {
     const main = gallery.querySelector('.gallery-main');
