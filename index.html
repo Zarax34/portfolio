@@ -120,11 +120,6 @@ header {
 .screen-bar { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 500; flex: none; }
 .screen-bar img { width: 20px; height: 20px; border-radius: 6px; object-fit: contain; }
 .screen-shot { flex: 1; min-height: 0; width: 100%; object-fit: cover; object-position: top center; }
-.screen-card { flex: 1; display: grid; place-items: center; align-content: center; gap: 12px; padding: 16px; background: var(--accent-soft); text-align: center; }
-.screen-card img { width: 92px; height: 92px; border-radius: 22px; background: var(--surface); padding: 8px; box-shadow: 0 14px 28px -18px rgba(14, 76, 62, .6); }
-.screen-card strong { font-size: 18px; }
-.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-.chips span { font-size: 12px; color: var(--accent); background: var(--surface); border-radius: 999px; padding: 2px 10px; }
 
 .ring { position: absolute; inset: auto 0 0 0; height: 31%; }
 .track { position: absolute; inset: 22% 14%; border: 1.5px dashed #b7d8cd; border-radius: 50%; }
@@ -148,12 +143,34 @@ header {
 #work { background: var(--surface); border-block: 1px solid var(--line); }
 .projects { display: grid; gap: 112px; margin-top: 72px; }
 .project { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
-.project:nth-child(even) .shot { order: 2; }
+.project:nth-child(even) .media { order: 2; }
 .shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--bg); box-shadow: var(--shadow); }
-.shot img { width: 100%; height: auto; transition: transform .8s var(--ease); }
-.shot:hover img { transform: scale(1.02); }
-.shot.logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--surface); }
-.shot.logo img { width: 44%; }
+.gallery-main { width: 100%; height: auto; transition: transform .8s var(--ease), opacity .25s var(--ease); }
+.shot:hover .gallery-main { transform: scale(1.02); }
+.thumbs { display: flex; gap: 10px; margin-top: 14px; }
+.thumb {
+  width: 96px; aspect-ratio: 16 / 10; padding: 0; overflow: hidden; cursor: pointer; opacity: .55;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  transition: opacity .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.thumb:hover { opacity: .85; }
+.thumb:active { transform: scale(.97); }
+.thumb.active { opacity: 1; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+/* phone screenshots shown as device frames */
+.phones { display: flex; justify-content: center; align-items: center; gap: 4%; aspect-ratio: 16 / 10.5; padding: 24px 6%; background: var(--accent-soft); }
+.phones img {
+  width: 26%; height: auto; min-width: 0; aspect-ratio: 9 / 19; object-fit: cover; object-position: top;
+  background: var(--surface); border: 5px solid var(--ink); border-radius: 20px;
+  box-shadow: 0 18px 32px -20px rgba(14, 76, 62, .7);
+}
+.phones img:nth-child(2) { width: 30%; transform: translateY(-5%); }
+.screen .phones { flex: 1; min-height: 0; aspect-ratio: auto; padding: 12px 8%; }
+.screen .phones img { width: auto; height: 86%; border-width: 4px; border-radius: 16px; }
+.screen .phones img:nth-child(2) { width: auto; height: 96%; }
+
+.buy { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
 .meta { display: flex; align-items: center; gap: 12px; }
 .num { font-size: 13px; color: var(--faint); }
 .tag { font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
@@ -263,7 +280,7 @@ footer .brand img { width: 22px; height: 22px; }
   .showcase { max-width: 560px; width: 100%; justify-self: center; }
   .projects { gap: 80px; }
   .project { gap: 28px; }
-  .project:nth-child(even) .shot { order: 0; }
+  .project:nth-child(even) .media { order: 0; }
   .bento { grid-template-columns: 1fr 1fr; }
   .tile-feature { grid-row: auto; grid-column: span 2; }
 }
@@ -289,7 +306,7 @@ footer .brand img { width: 22px; height: 22px; }
   <div class="wrap nav">
     <a class="brand" href="#top"><img src="favicon.svg" alt=""><span class="ar">أحمد فتحي</span><span class="en">Ahmed Fathi</span></a>
     <nav class="nav-links">
-      <a href="#work"><span class="ar">أعمالي</span><span class="en">Work</span></a>
+      <a href="#work"><span class="ar">التطبيقات</span><span class="en">Apps</span></a>
       <a href="#services"><span class="ar">الخدمات</span><span class="en">Services</span></a>
       <a href="#about"><span class="ar">عنّي</span><span class="en">About</span></a>
       <a href="#contact"><span class="ar">تواصل</span><span class="en">Contact</span></a>
@@ -315,7 +332,7 @@ footer .brand img { width: 22px; height: 22px; }
           <span class="en">Desktop, mobile and web systems for shops, offices and education centers, from the first idea to installation and automatic updates on the client's machines.</span>
         </p>
         <div class="actions reveal" style="--i:3">
-          <a class="btn btn-primary" href="#work"><span class="ar">شاهد أعمالي</span><span class="en">See my work</span>
+          <a class="btn btn-primary" href="#work"><span class="ar">تصفّح التطبيقات</span><span class="en">Browse the apps</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a class="btn" href="#contact"><span class="ar">تواصل معي</span><span class="en">Get in touch</span></a>
@@ -327,23 +344,19 @@ footer .brand img { width: 22px; height: 22px; }
         <div class="screens">
           <figure class="screen">
             <div class="screen-bar"><img src="images/cafepos-icon.png" alt=""><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></div>
-            <img class="screen-shot" src="images/cafepos.jpg" width="1280" height="720" alt="شاشة إدارة المنتجات في نظام الكافيه">
+            <img class="screen-shot" src="images/cafepos.jpg" width="1280" height="720" alt="إعدادات الكافيه ومعاينة الفاتورة">
           </figure>
           <figure class="screen">
             <div class="screen-bar"><img src="images/quran.jpg" alt=""><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></div>
-            <div class="screen-card">
-              <img src="images/quran.jpg" width="420" height="420" alt="شعار تطبيق مراكز تحفيظ القرآن">
-              <strong><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></strong>
-              <div class="chips">
-                <span><span class="ar">الحلقات والطلاب</span><span class="en">Circles & students</span></span>
-                <span><span class="ar">تقارير الحفظ</span><span class="en">Daily reports</span></span>
-                <span><span class="ar">إشعارات الأهالي</span><span class="en">Parent alerts</span></span>
-              </div>
+            <div class="phones">
+              <img src="images/quran-2.jpg" width="540" height="1130" alt="">
+              <img src="images/quran-1.jpg" width="540" height="1134" alt="لوحة تحكم مسؤول النظام في تطبيق مراكز تحفيظ القرآن">
+              <img src="images/quran-3.jpg" width="540" height="1330" alt="">
             </div>
           </figure>
           <figure class="screen">
             <div class="screen-bar"><img src="images/swiftdoc-icon.png" alt=""><span>Swift Doc</span></div>
-            <img class="screen-shot" src="images/swiftdoc.jpg" width="1280" height="680" alt="شاشة عرض الأرشيف في نظام Swift Doc">
+            <img class="screen-shot" src="images/swiftdoc.jpg" width="1280" height="680" alt="لوحة القيادة في نظام Swift Doc">
           </figure>
         </div>
         <div class="ring">
@@ -360,15 +373,21 @@ footer .brand img { width: 22px; height: 22px; }
     <div class="wrap">
       <div class="head">
         <div class="reveal">
-          <div class="eyebrow"><span class="ar">أعمال مختارة</span><span class="en">Selected work</span></div>
-          <h2><span class="ar">مشاريع تعمل عند عملاء حقيقيين</span><span class="en">Systems in real daily use</span></h2>
+          <div class="eyebrow"><span class="ar">تطبيقات جاهزة</span><span class="en">Ready-made apps</span></div>
+          <h2><span class="ar">اطلب نسخة من تطبيقاتي</span><span class="en">Order a copy of my apps</span></h2>
         </div>
-        <p class="lead reveal" style="--i:1"><span class="ar">ثلاثة أنظمة مختلفة تماماً، لكل منها مشكلة مختلفة وحل صُمّم لها تحديداً.</span><span class="en">Three very different systems, each built around its own problem.</span></p>
+        <p class="lead reveal" style="--i:1"><span class="ar">اضغط «اطلب هذا التطبيق» بجانب التطبيق الذي تريده، وتصلني رسالتك على واتساب مباشرة لنتفق على التفاصيل.</span><span class="en">Tap "Order this app" next to the one you want, and your message reaches me on WhatsApp right away so we can sort out the details.</span></p>
       </div>
 
       <div class="projects">
         <article class="project">
-          <div class="shot reveal"><img src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="شاشة إدارة المنتجات في نظام الكافيه"></div>
+          <div class="media gallery reveal">
+            <div class="shot"><img class="gallery-main" src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="إعدادات الكافيه ومعاينة الفاتورة"></div>
+            <div class="thumbs">
+              <button class="thumb active" type="button" data-src="images/cafepos.jpg" data-alt="إعدادات الكافيه ومعاينة الفاتورة"><img src="images/cafepos.jpg" alt="" loading="lazy"></button>
+              <button class="thumb" type="button" data-src="images/cafepos-2.jpg" data-alt="المستخدمون والصلاحيات في نظام الكافيه"><img src="images/cafepos-2.jpg" alt="" loading="lazy"></button>
+            </div>
+          </div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">01</span><span class="tag"><span class="ar">نقطة بيع · سطح المكتب + أندرويد</span><span class="en">Point of sale · Desktop + Android</span></span></div>
             <div class="app"><img class="app-icon bleed" src="images/cafepos-icon.png" width="160" height="160" loading="lazy" alt=""><h3><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></h3></div>
@@ -383,11 +402,23 @@ footer .brand img { width: 22px; height: 22px; }
               <li><span class="ar">مثبّت احترافي وتحديث تلقائي</span><span class="en">Signed installer and automatic updates</span></li>
             </ul>
             <div class="stack"><span>C# / .NET 8</span><span>WPF</span><span>SQLite</span><span>Supabase</span><span>Android</span></div>
+            <div class="buy">
+              <a class="btn btn-primary order" data-app-ar="نظام إدارة الكافيه الذكي" data-app-en="Smart Café POS" href="https://wa.me/967775738156" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+                <span class="ar">اطلب هذا التطبيق</span><span class="en">Order this app</span>
+              </a>
+            </div>
           </div>
         </article>
 
         <article class="project">
-          <div class="shot logo reveal"><img src="images/quran.jpg" width="420" height="420" loading="lazy" alt="شعار تطبيق مراكز تحفيظ القرآن"></div>
+          <div class="media reveal">
+            <div class="shot phones">
+              <img src="images/quran-2.jpg" width="540" height="1130" loading="lazy" alt="إدارة الطلاب في تطبيق مراكز تحفيظ القرآن">
+              <img src="images/quran-1.jpg" width="540" height="1134" loading="lazy" alt="لوحة تحكم مسؤول النظام في تطبيق مراكز تحفيظ القرآن">
+              <img src="images/quran-3.jpg" width="540" height="1330" loading="lazy" alt="إنشاء تقرير يومي للحلقة">
+            </div>
+          </div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">02</span><span class="tag"><span class="ar">منصة تعليمية · ويب + جوال</span><span class="en">Education platform · Web + Mobile</span></span></div>
             <div class="app"><img class="app-icon" src="images/quran.jpg" width="420" height="420" loading="lazy" alt=""><h3><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></h3></div>
@@ -402,11 +433,28 @@ footer .brand img { width: 22px; height: 22px; }
               <li><span class="ar">تطبيق أندرويد من نفس كود الموقع</span><span class="en">Android app built from the same codebase as the web</span></li>
             </ul>
             <div class="stack"><span>React</span><span>TypeScript</span><span>Supabase</span><span>Capacitor</span><span>Firebase</span></div>
+            <div class="buy">
+              <a class="btn btn-primary order" data-app-ar="مراكز تحفيظ القرآن" data-app-en="Quran Centers" href="https://wa.me/967775738156" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+                <span class="ar">اطلب هذا التطبيق</span><span class="en">Order this app</span>
+              </a>
+              <a class="btn" href="https://felthah.netlify.app" target="_blank" rel="noopener">
+                <span class="ar">الدخول إلى المنصة</span><span class="en">Open the platform</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="flip" d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
           </div>
         </article>
 
         <article class="project">
-          <div class="shot reveal"><img src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="شاشة عرض الأرشيف في نظام Swift Doc"></div>
+          <div class="media gallery reveal">
+            <div class="shot"><img class="gallery-main" src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="لوحة القيادة في نظام Swift Doc"></div>
+            <div class="thumbs">
+              <button class="thumb active" type="button" data-src="images/swiftdoc.jpg" data-alt="لوحة القيادة في نظام Swift Doc"><img src="images/swiftdoc.jpg" alt="" loading="lazy"></button>
+              <button class="thumb" type="button" data-src="images/swiftdoc-2.jpg" data-alt="إعدادات النظام والحساب في Swift Doc"><img src="images/swiftdoc-2.jpg" alt="" loading="lazy"></button>
+              <button class="thumb" type="button" data-src="images/swiftdoc-3.jpg" data-alt="شاشة الدخول السريع برمز PIN في Swift Doc"><img src="images/swiftdoc-3.jpg" alt="" loading="lazy"></button>
+            </div>
+          </div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">03</span><span class="tag"><span class="ar">أرشفة إلكترونية · سطح المكتب</span><span class="en">Document archiving · Desktop</span></span></div>
             <div class="app"><img class="app-icon" src="images/swiftdoc-icon.png" width="160" height="160" loading="lazy" alt=""><h3>Swift Doc</h3></div>
@@ -421,6 +469,12 @@ footer .brand img { width: 22px; height: 22px; }
               <li><span class="ar">تفعيل بالترخيص وتحديث تلقائي، بالعربية والإنجليزية</span><span class="en">License activation, auto-updates, Arabic and English</span></li>
             </ul>
             <div class="stack"><span>Electron</span><span>React</span><span>TypeScript</span><span>SQLCipher</span><span>libp2p</span></div>
+            <div class="buy">
+              <a class="btn btn-primary order" data-app-ar="Swift Doc للأرشفة الإلكترونية" data-app-en="Swift Doc" href="https://wa.me/967775738156" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.5A8.5 8.5 0 1 1 21 11.5z"/></svg>
+                <span class="ar">اطلب هذا التطبيق</span><span class="en">Order this app</span>
+              </a>
+            </div>
           </div>
         </article>
       </div>
@@ -504,8 +558,8 @@ footer .brand img { width: 22px; height: 22px; }
     <div class="wrap contact-grid">
       <div class="reveal">
         <div class="eyebrow"><span class="ar">لنعمل معاً</span><span class="en">Let's work together</span></div>
-        <h2><span class="ar">عندك فكرة نظام أو تطبيق؟</span><span class="en">Have a system or app in mind?</span></h2>
-        <p class="lead"><span class="ar">أرسل لي فكرتك وسأرد عليك بتصور أولي ومدة تقريبية.</span><span class="en">Send me your idea and I'll reply with an initial plan and a rough timeline.</span></p>
+        <h2><span class="ar">تريد أحد تطبيقاتي، أو نظاماً خاصاً بك؟</span><span class="en">Want one of my apps, or a system of your own?</span></h2>
+        <p class="lead"><span class="ar">راسلني بما تحتاجه، وسأرد عليك بالتفاصيل والسعر، أو بتصور أولي ومدة تقريبية إن كانت فكرة جديدة.</span><span class="en">Tell me what you need and I'll reply with details and pricing, or an initial plan and rough timeline for a new idea.</span></p>
       </div>
       <div class="links reveal" style="--i:1">
         <a class="link-row" href="https://wa.me/967775738156" target="_blank" rel="noopener">
@@ -541,16 +595,42 @@ footer .brand img { width: 22px; height: 22px; }
 
   const btn = document.getElementById('lang');
   const titles = { ar: 'أحمد فتحي | مطور تطبيقات وأنظمة', en: 'Ahmed Fathi | Software Developer' };
+  const WHATSAPP = 'https://wa.me/967775738156?text=';
+  const orderText = {
+    ar: (app) => `مرحباً أحمد، أريد طلب نسخة من تطبيق «${app}». أرجو إرسال التفاصيل والسعر.`,
+    en: (app) => `Hi Ahmed, I'd like to order a copy of ${app}. Could you send me the details and price?`,
+  };
+  function updateOrders(lang) {
+    document.querySelectorAll('.order').forEach((a) => {
+      a.href = WHATSAPP + encodeURIComponent(orderText[lang](a.dataset['app' + (lang === 'ar' ? 'Ar' : 'En')]));
+    });
+  }
   function setLang(lang) {
     root.lang = lang;
     root.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.title = titles[lang];
     btn.textContent = lang === 'ar' ? 'EN' : 'عربي';
+    updateOrders(lang);
     try { localStorage.setItem('lang', lang); } catch (e) {}
   }
   let saved = null;
   try { saved = localStorage.getItem('lang'); } catch (e) {}
-  if (saved === 'en') setLang('en');
+  setLang(saved === 'en' ? 'en' : 'ar');
+
+  document.querySelectorAll('.gallery').forEach((gallery) => {
+    const main = gallery.querySelector('.gallery-main');
+    const thumbs = gallery.querySelectorAll('.thumb');
+    thumbs.forEach((thumb) => thumb.addEventListener('click', () => {
+      if (thumb.classList.contains('active')) return;
+      thumbs.forEach((t) => t.classList.toggle('active', t === thumb));
+      main.style.opacity = 0;
+      setTimeout(() => {
+        main.onload = () => { main.style.opacity = 1; };
+        main.src = thumb.dataset.src;
+        main.alt = thumb.dataset.alt;
+      }, 200);
+    }));
+  });
   btn.addEventListener('click', () => setLang(root.lang === 'ar' ? 'en' : 'ar'));
   document.getElementById('year').textContent = new Date().getFullYear();
 
