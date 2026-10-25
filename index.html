@@ -139,7 +139,14 @@ header {
 .meta { display: flex; align-items: center; gap: 12px; }
 .num { font-size: 13px; color: var(--faint); }
 .tag { font-size: 13px; font-weight: 500; color: var(--accent); background: var(--accent-soft); padding: 2px 12px; border-radius: 999px; }
-.project h3 { font-size: 28px; line-height: 1.3; margin: 14px 0 10px; }
+.project h3 { font-size: 28px; line-height: 1.3; }
+.app { display: flex; align-items: center; gap: 14px; margin: 18px 0 12px; }
+.app-icon {
+  width: 52px; height: 52px; flex: none; object-fit: contain; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line); padding: 5px;
+  box-shadow: 0 10px 20px -14px rgba(14, 76, 62, .45);
+}
+.app-icon.bleed { padding: 0; border: 0; background: none; }
 .project p { color: var(--muted); }
 .features { list-style: none; padding: 0; margin: 20px 0 24px; display: grid; gap: 8px; }
 .features li { padding-inline-start: 22px; position: relative; }
@@ -320,7 +327,7 @@ footer .brand img { width: 22px; height: 22px; }
           <div class="shot reveal"><img src="images/cafepos.jpg" width="1280" height="720" loading="lazy" alt="شاشة إدارة المنتجات في نظام الكافيه"></div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">01</span><span class="tag"><span class="ar">نقطة بيع · سطح المكتب + أندرويد</span><span class="en">Point of sale · Desktop + Android</span></span></div>
-            <h3><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></h3>
+            <div class="app"><img class="app-icon bleed" src="images/cafepos-icon.png" width="160" height="160" loading="lazy" alt=""><h3><span class="ar">نظام إدارة الكافيه الذكي</span><span class="en">Smart Café POS</span></h3></div>
             <p>
               <span class="ar">نظام نقاط بيع متكامل للمقاهي والمطاعم. البيع يعمل محلياً دائماً، والبيانات تُرفع للسحابة تلقائياً عند عودة الاتصال.</span>
               <span class="en">A complete point-of-sale system for cafés and restaurants. Sales always run locally, and data syncs to the cloud automatically once the connection is back.</span>
@@ -339,7 +346,7 @@ footer .brand img { width: 22px; height: 22px; }
           <div class="shot logo reveal"><img src="images/quran.jpg" width="420" height="420" loading="lazy" alt="شعار تطبيق مراكز تحفيظ القرآن"></div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">02</span><span class="tag"><span class="ar">منصة تعليمية · ويب + جوال</span><span class="en">Education platform · Web + Mobile</span></span></div>
-            <h3><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></h3>
+            <div class="app"><img class="app-icon" src="images/quran.jpg" width="420" height="420" loading="lazy" alt=""><h3><span class="ar">مراكز تحفيظ القرآن</span><span class="en">Quran Centers</span></h3></div>
             <p>
               <span class="ar">نظام متكامل لإدارة مراكز تحفيظ القرآن الكريم، يجمع المدير والمعلم وولي الأمر والطالب في منصة واحدة على الويب والجوال.</span>
               <span class="en">An all-in-one platform for Quran memorization centers, connecting admins, teachers, parents and students on web and mobile.</span>
@@ -358,7 +365,7 @@ footer .brand img { width: 22px; height: 22px; }
           <div class="shot reveal"><img src="images/swiftdoc.jpg" width="1280" height="680" loading="lazy" alt="شاشة عرض الأرشيف في نظام Swift Doc"></div>
           <div class="reveal" style="--i:1">
             <div class="meta"><span class="num mono">03</span><span class="tag"><span class="ar">أرشفة إلكترونية · سطح المكتب</span><span class="en">Document archiving · Desktop</span></span></div>
-            <h3>Swift Doc</h3>
+            <div class="app"><img class="app-icon" src="images/swiftdoc-icon.png" width="160" height="160" loading="lazy" alt=""><h3>Swift Doc</h3></div>
             <p>
               <span class="ar">نظام أرشفة إلكترونية للمؤسسات والسكرتارية، يحفظ المستندات مشفّرة ويربط المقر الرئيسي بالفروع.</span>
               <span class="en">An electronic archiving system for offices, storing documents encrypted and linking headquarters with branches.</span>
